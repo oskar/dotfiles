@@ -1,0 +1,17 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Oskar Hermansson
+	email = oskar.hermansson@gmail.com
+[push]
+	autosetupremote = true
+[remote "origin"]
+	prune = true
+[alias]
+	s = status
+	co = checkout
+	b = branch
+	dc = diff --cached
+	ane = commit --amend --no-edit
+	pf = push --force-with-lease
+	l = log --oneline
