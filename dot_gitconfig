@@ -3,6 +3,8 @@
 	email = oskar.hermansson@gmail.com
 [push]
 	autosetupremote = true
+[init]
+	defaultBranch = main
 [remote "origin"]
 	prune = true
 [alias]
