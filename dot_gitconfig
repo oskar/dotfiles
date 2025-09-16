@@ -1,8 +1,8 @@
 [user]
 	name = Oskar Hermansson
-	email = oskar.hermansson@gmail.com
+	email = oskar.hermansson@hsb.se
 [push]
-	autosetupremote = true
+	autoSetupRemote = true
 [init]
 	defaultBranch = main
 [remote "origin"]
@@ -15,3 +15,20 @@
 	ane = commit --amend --no-edit
 	pf = push --force-with-lease
 	l = log --oneline
+	main-branch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
+	com = "!f(){ git checkout $(git main-branch) $@;}; f"
+[credential "helperselector"]
+	selected = manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[rebase]
+	autosquash = true
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	dark = true      # or light = true, or omit for auto-detection
+[merge]
+	conflictStyle = zdiff3
