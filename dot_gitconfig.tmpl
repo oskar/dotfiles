@@ -1,12 +1,3 @@
-[user]
-	name = Oskar Hermansson
-	email = {{ .email }}
-[push]
-	autoSetupRemote = true
-[init]
-	defaultBranch = main
-[remote "origin"]
-	prune = true
 [alias]
 	s = status -s
 	co = checkout
@@ -17,19 +8,28 @@
 	l = log --oneline
 	main-branch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
 	com = "!f(){ git checkout $(git main-branch) $@;}; f"
+[core]
+	pager = delta
+	editor = code --wait
 [credential "helperselector"]
 	selected = manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
-[rebase]
-	autosquash = true
-[core]
-	pager = delta
-	editor = code --wait
-[interactive]
-	diffFilter = delta --color-only
 [delta]
 	navigate = true  # use n and N to move between diff sections
 	dark = true      # or light = true, or omit for auto-detection
+[init]
+	defaultBranch = main
+[interactive]
+	diffFilter = delta --color-only
 [merge]
 	conflictStyle = zdiff3
+[push]
+	autoSetupRemote = true
+[rebase]
+	autosquash = true
+[remote "origin"]
+	prune = true
+[user]
+	name = Oskar Hermansson
+	email = {{ .email }}
