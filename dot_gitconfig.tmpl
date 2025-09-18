@@ -6,6 +6,7 @@
 	ane = commit --amend --no-edit
 	pf = push --force-with-lease
 	l = log --oneline
+	ll = l -1
 	main-branch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
 	com = "!f(){ git checkout $(git main-branch) $@;}; f"
 [core]
