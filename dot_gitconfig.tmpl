@@ -1,14 +1,15 @@
 [alias]
-	s = status -s
-	co = checkout
-	b = branch
-	dc = diff --cached
+	default-branch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
 	ane = commit --amend --no-edit
-	pf = push --force-with-lease
+	b = branch
+	co = checkout
+	com = !git checkout $(git default-branch)
+	dc = diff --cached
 	l = log --oneline
 	ll = l -1
-	main-branch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
-	com = "!f(){ git checkout $(git main-branch) $@;}; f"
+	lb = !git l $(git default-branch)..HEAD
+	pf = push --force-with-lease
+	s = status -s
 [core]
 	pager = delta
 	editor = code --wait
