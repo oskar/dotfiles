@@ -5,7 +5,7 @@
 	co = checkout
 	com = !git checkout $(git default-branch)
 	dc = diff --cached
-	l = log --oneline
+	l = log --pretty='%C(auto)%h %C(cyan)%an %ad%C(auto)%d %s' --date=relative
 	ll = l -1
 	lb = !git l $(git default-branch)..HEAD
 	pf = push --force-with-lease
