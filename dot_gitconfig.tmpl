@@ -28,6 +28,10 @@
 	abbrevCommit = true
 [merge]
 	conflictStyle = zdiff3
+	tool = vscode
+[mergetool "vscode"]
+	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+	keepBackup = false
 [push]
 	autoSetupRemote = true
 [rebase]
