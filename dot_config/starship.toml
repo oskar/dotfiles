@@ -13,5 +13,5 @@ untracked = "?${count} "
 stashed = '\$${count} '
 modified = "!${count} "
 staged = "[+$count](green) "
-renamed = "»${count} "
-deleted = "-${count} "
+renamed = "[»$count](green) "
+deleted = "-$count " # Both unstaged and staged
