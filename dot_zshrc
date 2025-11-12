@@ -1,10 +1,5 @@
-# Add Homebrew completions (if brew shellenv hasn't run yet which is the case
-# for non-login shells, it only runs in .zprofile)
-if [[ -z "$HOMEBREW_PREFIX" ]]; then
-  if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
-    fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
-  fi
-fi
+# Add Homebrew completions to make them work also in non-login shells
+fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
