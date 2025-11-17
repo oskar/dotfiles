@@ -1,14 +1,18 @@
-# 1. Install Homebrew
+# dotfiles with chezmoi
+
+Steps to get started on new macOS computer.
+
+## 1. Install Homebrew
 ```bash
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 ```
 
-# 2. Install oh-my-zsh
+## 2. Install oh-my-zsh
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-# 3. Create chezmoi config
+## 3. Create chezmoi config
 
 Create file `~/.config/chezmoi/chezmoi.toml` with substituted values in data section
 ```
@@ -28,12 +32,12 @@ Create file `~/.config/chezmoi/chezmoi.toml` with substituted values in data sec
     email = "<email-address>"
 ```
 
-# 4. Install chezmoi
+## 4. Install chezmoi
 ```bash
 brew install chezmoi
 ```
 
-# 5. Init chezmoi and apply dotfiles
+## 5. Init chezmoi and apply dotfiles
 ```bash
 chezmoi init --apply https://github.com/oskar/dotfiles.git
 ```
