@@ -41,3 +41,11 @@ brew install chezmoi
 ```bash
 chezmoi init --apply https://github.com/oskar/dotfiles.git
 ```
+
+## 6. Restart shell or terminal
+
+## 7. Additional
+
+```bash
+gh auth login
+```
