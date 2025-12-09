@@ -4,7 +4,7 @@ Steps to get started on new macOS computer.
 
 ## 1. Install Homebrew
 ```bash
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 ## 2. Install oh-my-zsh
