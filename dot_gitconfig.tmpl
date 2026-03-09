@@ -10,6 +10,26 @@
 	lb = !git l $(git default-branch)..HEAD
 	pf = push --force-with-lease
 	s = status -s
+	dlb = "!f() { \
+		main=\"${1:-$(git default-branch)}\"; \
+		if ! git rev-parse --verify \"$main\" >/dev/null 2>&1; then \
+			echo \"error: branch '$main' not found\" >&2; return 1; \
+		fi; \
+		git branch \
+			| grep -v '^\\*' \
+			| sed 's/^[[:space:]]*//' \
+			| grep -v \"^${main}$\" \
+			| while IFS= read -r b; do \
+				if ! git cherry \"$main\" \"$b\" 2>/dev/null | grep -q '^+'; then \
+					git branch -D \"$b\"; continue; \
+				fi; \
+				anc=$(git merge-base \"$main\" \"$b\" 2>/dev/null) || continue; \
+				v=$(git commit-tree \"$b^{tree}\" -p \"$anc\" -m _ 2>/dev/null) || continue; \
+				if ! git cherry \"$main\" \"$v\" 2>/dev/null | grep -q '^+'; then \
+					git branch -D \"$b\"; \
+				fi; \
+			done; \
+	}; f"
 [core]
 	pager = delta
 	editor = code --wait
