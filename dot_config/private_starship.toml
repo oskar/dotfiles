@@ -14,4 +14,7 @@ stashed = '\$${count} '
 modified = "!${count} "
 staged = "[+$count](green) "
 renamed = "[»$count](green) "
-deleted = "-$count " # Both unstaged and staged
+deleted = "-$count "          # Both unstaged and staged
+
+[kubernetes]
+disabled = false
