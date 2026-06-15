@@ -16,5 +16,11 @@ staged = "[+$count](green) "
 renamed = "[»$count](green) "
 deleted = "-$count "          # Both unstaged and staged
 
-[kubernetes]
-#disabled = false
+[python]
+disabled = true
+
+[golang]
+disabled = true
+
+[docker_context]
+disabled = true
