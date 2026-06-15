@@ -2,6 +2,7 @@
 	default-branch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
 	ane = commit --amend --no-edit
 	b = branch
+	branch-stat = !git diff $(git default-branch)...HEAD --shortstat
 	co = checkout
 	com = !git checkout $(git default-branch)
 	dc = diff --cached
