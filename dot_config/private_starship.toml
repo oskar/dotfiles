@@ -17,4 +17,4 @@ renamed = "[»$count](green) "
 deleted = "-$count "          # Both unstaged and staged
 
 [kubernetes]
-disabled = false
+#disabled = false
