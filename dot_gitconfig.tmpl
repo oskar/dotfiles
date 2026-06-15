@@ -31,12 +31,40 @@
 				fi; \
 			done; \
 	}; f"
+	dlb2 = "!f() { \
+		defaultBranch=master; \
+		if ! git rev-parse --verify master >/dev/null 2>&1; then \
+			defaultBranch=main; \
+		fi; \
+		git checkout -q \"$defaultBranch\" || exit 1; \
+		git for-each-ref refs/heads/ --format='%(refname:short)' \
+			| while read branch; do \
+				if [ \"$branch\" != \"master\" ] && [ \"$branch\" != \"main\" ]; then \
+					if [[ -z \"$(git rev-list \"$defaultBranch\"..\"$branch\")\" ]]; then \
+						echo \"Deleting branch with no unique commits: $branch\"; \
+						git branch -D \"$branch\"; \
+					elif git branch --merged \"$defaultBranch\" --format='%(refname:short)' | grep -Fxq \"$branch\"; then \
+						echo \"Deleting merged branch: $branch\"; \
+						git branch -D \"$branch\"; \
+					else \
+						mergeBase=\"$(git merge-base \"$defaultBranch\" \"$branch\")\"; \
+						if [[ \"$(git cherry \"$defaultBranch\" $(git commit-tree $(git rev-parse \"$branch^{tree}\") -p \"$mergeBase\" -m _))\" == -* ]]; then \
+							echo \"Deleting effectively merged branch: $branch\"; \
+							git branch -D \"$branch\"; \
+						fi; \
+					fi; \
+				fi; \
+			done; \
+	}; f"
+
 [core]
 	pager = delta
 	editor = code --wait
 [credential]
 	helper =
 	helper = manager
+	helper =
+	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "helperselector"]
 	selected = manager
 [credential "https://dev.azure.com"]
@@ -64,4 +92,4 @@
 	prune = true
 [user]
 	name = Oskar Hermansson
-	email = {{ .email }}
+	email = oskar.hermansson@hsb.se
